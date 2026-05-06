@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-16/server.schema.json",
+  "name": "io.github.universal-ads/ua-mcp",
+  "description": "Universal Ads read-only MCP server powered by universal-ads-sdk",
+  "status": "active",
+  "repository": {
+    "url": "https://github.com/universal-ads/ua-mcp-server",
+    "source": "github"
+  },
+  "version_detail": {
+    "version": "0.2.0"
+  },
+  "packages": [
+    {
+      "registry_name": "pypi",
+      "name": "ua-mcp",
+      "version": "0.2.0",
+      "runtime_hint": "python>=3.11"
+    }
+  ]
+}

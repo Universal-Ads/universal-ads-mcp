@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "ua-mcp"
+version = "0.2.0"
+description = "Universal Ads read-only MCP server"
+authors = ["Universal Ads Engineering"]
+readme = "README.md"
+packages = [{ include = "ua_mcp" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+mcp = { version = ">=1.24.0", extras = ["cli"] }
+universal-ads-sdk = ">=1.3.0"
+python-dotenv = ">=1.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.3.0"
+black = ">=24.10.0"
+
+[tool.poetry.scripts]
+ua-mcp = "ua_mcp.server:main"
+
+[build-system]
+requires = ["poetry-core>=1.9.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
