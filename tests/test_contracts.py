@@ -14,5 +14,4 @@ def test_tools_are_structured_and_readonly(fake_registry) -> None:
         assert annotations is not None
         assert getattr(annotations, "readOnlyHint", False) is True
         assert getattr(annotations, "destructiveHint", True) is False
-        if name != "ua_get_scheduled_report":
-            assert getattr(annotations, "idempotentHint", False) is True
+        assert getattr(annotations, "idempotentHint", False) is True

@@ -10,7 +10,7 @@ from .me import register_me_tools
 from .media import register_media_tools
 from .pixel import register_pixel_tools
 from .report import register_report_tools
-from .segment import register_segment_tools
+from .audience import register_audience_tools
 from .setup import register_setup_tools
 
 
@@ -24,5 +24,5 @@ def register_tools(mcp: object) -> None:
     register_creative_tools(mcp)
     register_media_tools(mcp)
     register_report_tools(mcp)
-    register_segment_tools(mcp)
+    register_audience_tools(mcp)
     register_pixel_tools(mcp)

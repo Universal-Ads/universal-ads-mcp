@@ -16,9 +16,8 @@ TOOL_CATALOG = {
         "ua_get_campaign_report",
         "ua_get_adset_report",
         "ua_get_ad_report",
-        "ua_get_scheduled_report",
     ],
-    "segment": ["ua_get_segments", "ua_get_segment"],
+    "audience": ["ua_get_audiences", "ua_get_audience"],
     "pixel": ["ua_get_pixels", "ua_get_pixel", "ua_get_pixel_events"],
 }
 

@@ -6,12 +6,17 @@ from threading import Lock
 
 from universal_ads_sdk import UniversalAdsClient
 
+from . import __version__
 from .config import UAConfig, resolve_config
 from .errors import raise_user_error
 
 _client_lock = Lock()
 _client: UniversalAdsClient | None = None
 _config: UAConfig | None = None
+_DEFAULT_CLIENT_HEADERS = {
+    "x-ua-client": "mcp",
+    "x-ua-mcp-version": __version__ or "unknown",
+}
 
 
 def _build_client(config: UAConfig) -> UniversalAdsClient:
@@ -19,6 +24,7 @@ def _build_client(config: UAConfig) -> UniversalAdsClient:
         api_key=config.api_key,
         private_key_pem=config.private_key_pem,
         base_url=config.base_url,
+        headers=_DEFAULT_CLIENT_HEADERS,
     )
 
 

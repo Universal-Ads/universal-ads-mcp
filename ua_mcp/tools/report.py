@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from .. import api
-from ..tool_contract import READ_ONLY_TOOL, tool_response
+from ..tool_contract import READ_ONLY_TOOL, normalize_limit, tool_response
 
 
 def register_report_tools(mcp: object) -> None:
@@ -22,7 +22,8 @@ def register_report_tools(mcp: object) -> None:
         limit: int | None = None,
         offset: int | None = None,
     ) -> dict[str, Any]:
-        """Fetch campaign performance report."""
+        """Fetch campaign performance report. limit: defaults to 10 when omitted (TPA range 1-20)."""
+        effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=20)
         return tool_response(
             api.call(
                 "get_campaign_report",
@@ -34,7 +35,7 @@ def register_report_tools(mcp: object) -> None:
                 ad_ids=ad_ids,
                 date_aggregation=date_aggregation,
                 attribution_window=attribution_window,
-                limit=limit,
+                limit=effective_limit,
                 offset=offset,
             )
         )
@@ -52,7 +53,8 @@ def register_report_tools(mcp: object) -> None:
         limit: int | None = None,
         offset: int | None = None,
     ) -> dict[str, Any]:
-        """Fetch ad set performance report."""
+        """Fetch ad set performance report. limit: defaults to 10 when omitted (TPA range 1-20)."""
+        effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=20)
         return tool_response(
             api.call(
                 "get_adset_report",
@@ -64,7 +66,7 @@ def register_report_tools(mcp: object) -> None:
                 ad_ids=ad_ids,
                 date_aggregation=date_aggregation,
                 attribution_window=attribution_window,
-                limit=limit,
+                limit=effective_limit,
                 offset=offset,
             )
         )
@@ -82,7 +84,8 @@ def register_report_tools(mcp: object) -> None:
         limit: int | None = None,
         offset: int | None = None,
     ) -> dict[str, Any]:
-        """Fetch ad performance report."""
+        """Fetch ad performance report. limit: defaults to 10 when omitted (TPA range 1-20)."""
+        effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=20)
         return tool_response(
             api.call(
                 "get_ad_report",
@@ -94,18 +97,8 @@ def register_report_tools(mcp: object) -> None:
                 ad_ids=ad_ids,
                 date_aggregation=date_aggregation,
                 attribution_window=attribution_window,
-                limit=limit,
+                limit=effective_limit,
                 offset=offset,
             )
         )
 
-    @mcp.tool(annotations=READ_ONLY_TOOL, structured_output=True)
-    def ua_get_scheduled_report(
-        scheduled_report_id: str,
-        include_result_url: bool = False,
-    ) -> dict[str, Any]:
-        """Fetch scheduled report status/output metadata."""
-        return tool_response(
-            api.call("get_scheduled_report", scheduled_report_id=scheduled_report_id),
-            include_result_url=include_result_url,
-        )

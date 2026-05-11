@@ -21,9 +21,8 @@ EXPECTED_TOOLS = {
     "ua_get_campaign_report",
     "ua_get_adset_report",
     "ua_get_ad_report",
-    "ua_get_scheduled_report",
-    "ua_get_segments",
-    "ua_get_segment",
+    "ua_get_audiences",
+    "ua_get_audience",
     "ua_get_pixels",
     "ua_get_pixel",
     "ua_get_pixel_events",
@@ -39,11 +38,7 @@ def test_no_mutation_tools(fake_registry) -> None:
     register_tools(fake_registry)
     names = set(fake_registry.tools.keys())
     forbidden = {"create", "update", "delete", "upload", "verify", "schedule"}
-    assert not any(
-        any(token in name for token in forbidden)
-        for name in names
-        if name != "ua_get_scheduled_report"
-    )
+    assert not any(any(token in name for token in forbidden) for name in names)
 
 
 def test_catalog_matches_tools(fake_registry) -> None:
