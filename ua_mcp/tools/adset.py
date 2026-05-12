@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from .. import api
-from ..tool_contract import READ_ONLY_TOOL, tool_response
+from ..tool_contract import READ_ONLY_TOOL, normalize_limit, tool_response
 
 
 def register_adset_tools(mcp: object) -> None:
@@ -18,14 +18,15 @@ def register_adset_tools(mcp: object) -> None:
         sort: str | None = None,
         filters: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        """List ad sets with optional filters."""
+        """List ad sets with optional filters. limit: defaults to 10 when omitted (TPA range 1-100)."""
         extra_filters = filters or {}
+        effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=100)
         return tool_response(
             api.call(
                 "get_adsets",
                 adaccount_id=adaccount_id,
                 campaign_id=campaign_id,
-                limit=limit,
+                limit=effective_limit,
                 offset=offset,
                 sort=sort,
                 **extra_filters,

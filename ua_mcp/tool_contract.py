@@ -27,3 +27,13 @@ def tool_response(
         "data": redact_response(data, include_result_url=include_result_url),
         "warnings": warnings or [],
     }
+
+
+def normalize_limit(*, limit: int | None, default_limit: int, max_limit: int) -> int:
+    """Return a bounded limit with an MCP-side default."""
+    effective_limit = default_limit if limit is None else limit
+    if effective_limit < 1:
+        raise ValueError("limit must be >= 1")
+    if effective_limit > max_limit:
+        raise ValueError(f"limit must be <= {max_limit}")
+    return effective_limit

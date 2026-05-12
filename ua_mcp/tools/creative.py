@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from .. import api
-from ..tool_contract import READ_ONLY_TOOL, tool_response
+from ..tool_contract import READ_ONLY_TOOL, normalize_limit, tool_response
 
 
 def register_creative_tools(mcp: object) -> None:
@@ -19,7 +19,8 @@ def register_creative_tools(mcp: object) -> None:
         offset: int | None = None,
         sort: str | None = None,
     ) -> dict[str, Any]:
-        """List creatives."""
+        """List creatives. limit: defaults to 10 when omitted (TPA range 1-100)."""
+        effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=100)
         return tool_response(
             api.call(
                 "get_creatives",
@@ -27,7 +28,7 @@ def register_creative_tools(mcp: object) -> None:
                 campaign_id=campaign_id,
                 adset_id=adset_id,
                 ad_id=ad_id,
-                limit=limit,
+                limit=effective_limit,
                 offset=offset,
                 sort=sort,
             )
