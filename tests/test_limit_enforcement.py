@@ -10,9 +10,9 @@ from ua_mcp.tools import register_tools
 @pytest.mark.parametrize(
     ("tool_name", "kwargs", "expected_error"),
     [
-        ("ua_get_campaigns", {"limit": 101}, "limit must be <= 100"),
-        ("ua_get_adsets", {"limit": 101}, "limit must be <= 100"),
-        ("ua_get_ads", {"limit": 101}, "limit must be <= 100"),
+        ("ua_get_campaigns", {"adaccount_id": "acc_1", "limit": 101}, "limit must be <= 100"),
+        ("ua_get_adsets", {"adaccount_id": "acc_1", "limit": 101}, "limit must be <= 100"),
+        ("ua_get_ads", {"adaccount_id": "acc_1", "limit": 101}, "limit must be <= 100"),
         ("ua_get_creatives", {"limit": 101}, "limit must be <= 100"),
         ("ua_get_pixels", {"limit": 101}, "limit must be <= 100"),
         ("ua_get_pixel_events", {"pixel_id": "pix_1", "limit": 101}, "limit must be <= 100"),
@@ -22,7 +22,7 @@ from ua_mcp.tools import register_tools
         ("ua_get_campaign_report", {"adaccount_id": "acc_1", "limit": 21}, "limit must be <= 20"),
         ("ua_get_adset_report", {"adaccount_id": "acc_1", "limit": 21}, "limit must be <= 20"),
         ("ua_get_ad_report", {"adaccount_id": "acc_1", "limit": 21}, "limit must be <= 20"),
-        ("ua_get_campaigns", {"limit": 0}, "limit must be >= 1"),
+        ("ua_get_campaigns", {"adaccount_id": "acc_1", "limit": 0}, "limit must be >= 1"),
     ],
 )
 def test_tool_limit_bounds(fake_registry, tool_name: str, kwargs: dict, expected_error: str) -> None:
