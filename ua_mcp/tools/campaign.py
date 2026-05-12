@@ -11,23 +11,30 @@ from ..tool_contract import READ_ONLY_TOOL, normalize_limit, tool_response
 def register_campaign_tools(mcp: object) -> None:
     @mcp.tool(annotations=READ_ONLY_TOOL, structured_output=True)
     def ua_get_campaigns(
-        adaccount_id: str | None = None,
+        adaccount_id: str,
+        campaign_ids: list[str] | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        campaign_type: str | None = None,
+        include_archived: bool | None = None,
         limit: int | None = None,
         offset: int | None = None,
         sort: str | None = None,
-        filters: dict[str, Any] | None = None,
     ) -> dict[str, Any]:
-        """List campaigns with optional filters. limit: defaults to 10 when omitted (TPA range 1-100)."""
-        extra_filters = filters or {}
+        """List campaigns for an ad account. limit: defaults to 10 when omitted (TPA range 1-100)."""
         effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=100)
         return tool_response(
             api.call(
                 "get_campaigns",
                 adaccount_id=adaccount_id,
+                campaign_ids=campaign_ids,
+                name=name,
+                status=status,
+                campaign_type=campaign_type,
+                include_archived=include_archived,
                 limit=effective_limit,
                 offset=offset,
                 sort=sort,
-                **extra_filters,
             )
         )
 
