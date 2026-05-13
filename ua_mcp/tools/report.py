@@ -31,6 +31,8 @@ def register_report_tools(mcp: object) -> None:
             end_date: End of the reporting window. Same format as start_date.
             date_aggregation: Time bucketing for the report. Allowed values:
                 "HOUR", "DAY", "LIFETIME", "TOTAL" — note these are UPPERCASE.
+                DAY/HOUR omits zero-activity buckets — zero-fill client-side
+                if you need a continuous series.
             attribution_window: Conversion attribution window. Allowed values:
                 "7_day", "14_day", "30_day" — lowercase. If not set, pixel-based
                 conversion metrics are omitted from the response.
@@ -74,6 +76,8 @@ def register_report_tools(mcp: object) -> None:
             end_date: End of the reporting window. Same format as start_date.
             date_aggregation: Time bucketing for the report. Allowed values:
                 "HOUR", "DAY", "LIFETIME", "TOTAL" — note these are UPPERCASE.
+                DAY/HOUR omits zero-activity buckets — zero-fill client-side
+                if you need a continuous series.
             attribution_window: Conversion attribution window. Allowed values:
                 "7_day", "14_day", "30_day" — lowercase. If not set, pixel-based
                 conversion metrics are omitted from the response.
@@ -120,6 +124,8 @@ def register_report_tools(mcp: object) -> None:
             end_date: End of the reporting window. Same format as start_date.
             date_aggregation: Time bucketing for the report. Allowed values:
                 "HOUR", "DAY", "LIFETIME", "TOTAL" — note these are UPPERCASE.
+                DAY/HOUR omits zero-activity buckets — zero-fill client-side
+                if you need a continuous series.
             attribution_window: Conversion attribution window. Allowed values:
                 "7_day", "14_day", "30_day" — lowercase. If not set, pixel-based
                 conversion metrics are omitted from the response.
