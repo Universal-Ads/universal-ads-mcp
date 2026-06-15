@@ -30,11 +30,11 @@ def test_build_client_sets_mcp_headers(monkeypatch) -> None:
 
 
 def test_validate_sdk_version_accepts_required_version(monkeypatch) -> None:
-    monkeypatch.setattr(client_factory, "_get_installed_sdk_version", lambda: "2.0.0")
+    monkeypatch.setattr(client_factory, "_get_installed_sdk_version", lambda: "2.2.0")
     client_factory.validate_sdk_version()
 
 
 def test_validate_sdk_version_rejects_mismatch(monkeypatch) -> None:
     monkeypatch.setattr(client_factory, "_get_installed_sdk_version", lambda: "1.9.9")
-    with pytest.raises(RuntimeError, match="requires universal-ads-sdk==2.0.0"):
+    with pytest.raises(RuntimeError, match="requires universal-ads-sdk==2.2.0"):
         client_factory.validate_sdk_version()

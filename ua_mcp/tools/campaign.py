@@ -14,14 +14,18 @@ def register_campaign_tools(mcp: object) -> None:
         adaccount_id: str,
         campaign_ids: list[str] | None = None,
         name: str | None = None,
-        status: str | None = None,
+        status: list[str] | None = None,
         campaign_type: str | None = None,
         include_archived: bool | None = None,
         limit: int | None = None,
         offset: int | None = None,
         sort: str | None = None,
     ) -> dict[str, Any]:
-        """List campaigns for an ad account. limit: defaults to 10 when omitted (TPA range 1-100)."""
+        """List campaigns for an ad account.
+
+        status: optional list of statuses to filter by (e.g. ["active", "paused"]).
+        limit: defaults to 10 when omitted (TPA range 1-100).
+        """
         effective_limit = normalize_limit(limit=limit, default_limit=10, max_limit=100)
         return tool_response(
             api.call(

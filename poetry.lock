@@ -1370,14 +1370,14 @@ typing-extensions = ">=4.12.0"
 
 [[package]]
 name = "universal-ads-sdk"
-version = "2.1.1"
+version = "2.2.0"
 description = "Python SDK for the Universal Ads Third Party API"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "universal_ads_sdk-2.1.1-py3-none-any.whl", hash = "sha256:559e0fce9a5f8f2a6a984e49eb0ab7a299a74078b66edebbd85d6d907d26b396"},
-    {file = "universal_ads_sdk-2.1.1.tar.gz", hash = "sha256:0f378505b0b8802dc97f4a57d0884ca85b895734b1725140d8bab4b14670662e"},
+    {file = "universal_ads_sdk-2.2.0-py3-none-any.whl", hash = "sha256:da5a1b77af49366da3a71b47a880a26ef73723e804299745fbf3a2f21b16b893"},
+    {file = "universal_ads_sdk-2.2.0.tar.gz", hash = "sha256:e6101cb4ba41d2b610851726d10c8741d167b8237af84c2cbaf7d028653a1b0a"},
 ]
 
 [package.dependencies]
@@ -1429,4 +1429,4 @@ standard = ["colorama (>=0.4) ; sys_platform == \"win32\"", "httptools (>=0.6.3)
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "e62a4418fdbbd0a88bfa307a5af59b0ec1a1e59ddaabcb465d284056a38b1ecc"
+content-hash = "0e26a60c41d2df825ad29ebc52257789c78a308bc789be463358bdff2fb8ab15"

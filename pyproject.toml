@@ -9,7 +9,7 @@ packages = [{ include = "ua_mcp" }]
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
 mcp = { version = ">=1.24.0", extras = ["cli"] }
-universal-ads-sdk = "2.1.1"
+universal-ads-sdk = "2.2.0"
 python-dotenv = ">=1.0.1"
 
 [tool.poetry.group.dev.dependencies]

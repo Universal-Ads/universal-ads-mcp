@@ -14,7 +14,7 @@ from .errors import raise_user_error
 _client_lock = Lock()
 _client: UniversalAdsClient | None = None
 _config: UAConfig | None = None
-_REQUIRED_SDK_VERSION = "2.1.1"
+_REQUIRED_SDK_VERSION = "2.2.0"
 _DEFAULT_CLIENT_HEADERS = {
     "x-ua-client": "mcp",
     "x-ua-mcp-version": __version__ or "unknown",
